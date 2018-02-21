@@ -44,56 +44,51 @@ $(document).ready(function () {
             for (var j = 0; j < questionArr[i].choices.length; j++) {
 
                 $("#question").append('<input type="radio" class="radioButton" name="triviaQuestion' + i + '" value="' + questionArr[i].choices[j] + '">' + questionArr[i].choices[j] + '</button>');
-            }
 
-            for (var k = 0; k < questionArr[i].correctAnswer; k++) {
-                console.log(correctAnswer[k])
             }
-
         }
 
-        $('#question').on("click", function () {
-            var userChoice = $('input:checked').val();
-            console.log("You selected " + userChoice);
-
-                if (userChoice === questionArr[i].correctAnswer[k]) {
-                    correct++
-                    console.log(correct)
-                }
-
-                else if (userChoice != questionArr[i].correctAnswer[k]) {
-                    incorrect++
-                    console.log(incorrect)
-                }
-
-                else {
-                    unanswered++
-                    console.log(unanswered)
-                }
+        $('.radioButton').on('click', function (event) {
+            var userChoice= $(event.target).val()
+           console.log(userChoice)
 
         })
     }
 
 })
 
+        // $('.radioButton').on("click", function (event) {
+        //         var userChoice = $('input:checked','radioButton').val();
+        //         console.log("You selected " + userChoice);
+
+        //             if (userChoice === questionArr[i].correctAnswer[k]) {
+        //                 correct++
+        //                 console.log(correct)
+        //             }
+
+        //             else if (userChoice != questionArr[i].correctAnswer[k]) {
+        //                 incorrect++
+        //                 console.log(incorrect)
+        //             }
+
+        //             else {
+        //                 unanswered++
+        //                 console.log(unanswered)
+        //             }
+
+        // })
 
 
         // $('#question input').on('change', function () {
-        // alert($('input[name=triviaQuestion]:checked', '#question').val());
-        // alert($('input:checked', '#question').val());
-        // alert($('input:radio:checked').val());
+            // alert($('input[name=triviaQuestion]:checked', '#question').val());
+            // alert($('input:checked', '#question').val());
+            // alert($('input:radio:checked').val());
 
 
         // $("#questions").append(questionThing);   
 
         // $(".radioButton").on("click", function () {
         //     console.log("hello")
-
-
-
-
-
-
 
 
     // $("#question").html("<h4>" + questionArr[currentQuestion].question + "</h4>");
