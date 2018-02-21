@@ -52,7 +52,7 @@ $(document).ready(function () {
 
         }
 
-        $('#question').on("change", function () {
+        $('#question').on("click", function () {
             var userChoice = $('input:checked').val();
             console.log("You selected " + userChoice);
 
