@@ -19,40 +19,32 @@
 
     <body>
 
-
-        <main role="main" class="container">
-
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Trivia Game!</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured
-                        content</p>
-                </div>
-            </div>
-
-
-
-
+        <div class="jumbotron jumbotron-fluid">
             <div class="container">
-
-                <div id="seconds"></div>
-
-                <form id="question">
-
-                    <div class="btn btn-success" id="startBtn">Start</div>
-
-                    <!-- <div id="seconds"></div> -->
-
-                    <!-- <div class="btn btn-secondary" id="submitBtn">Submit</div> -->
-
-                    <div id="gameStats"></div>
-
-                </form>
-
+                <h1 class="display-4">Garden State Trivia</h1>
+                <p class="lead">Welcome to the Garden State Trivia game! Test your knowledge of the great Garden State by submiting all of your answers before the timer runs out.</p>
+                <p class="lead">Click the "Start Game" button when you're ready to begin playing.</p>
+                <p class="lead">Good luck!</p>
+                
+                <div class="btn btn-success" id="startBtn">Start</div>
             </div>
 
-        </main>
-        <!-- /.container -->
+        </div>
+
+        <!-- Jumbotron -->
+        <div class="container">
+            <div class="row" id="quizArea">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div id="seconds"></div>
+                    <form id="question"></form>
+                    <div class="btn btn-secondary" id="submitBtn">Submit Questions</div>
+                    <div id="gameStats"></div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
 
         <!-- Bootstrap core JavaScript
                 ================================================== -->
@@ -70,7 +62,6 @@
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
 
     </body>
 

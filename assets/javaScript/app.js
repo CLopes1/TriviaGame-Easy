@@ -15,7 +15,17 @@ $(document).ready(function () {
         {
             question: "What is New Jersey's professional hockey team?",
             choices: ["Devils", "Rangers", "Flyers", "Islanders"],
-            correctAnswer: "Trenton",
+            correctAnswer: "Devils",
+        },
+        {
+            question: "Which NBA team left New Jersey to play in Brooklyn?",
+            choices: ["Giants", "Nets", "Knicks", "Celtics"],
+            correctAnswer: "Nets",
+        },
+        {
+            question: "On what island is Governor's mansion located?",
+            choices: ["Long Beach Island", "Absecon Island", "Island Beach", "Brigantine Island"],
+            correctAnswer: "Island Beach",
         }
     ]
 
@@ -23,8 +33,30 @@ $(document).ready(function () {
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
-    var counter = seconds;
-    var seconds = 30;
+    // var counter = seconds;
+    // var seconds = 30;
+
+    //Hide submit button
+    $("#submitBtn").hide()
+
+
+    // Timer Countdown, begins at count
+    var n = 60
+
+
+
+    // function countDown() {
+    //     n--;
+    //     if (n > 0) {
+    //         setTimeout(countDown, 1000);
+    //     }
+    //     else if (n <= 0) {
+    //         // alert shows how many correct, and how many incorrect
+    //         alert('Times Up!\n Correct Guesses: ' + correct + '\n Incorrect: ' + incorrect + "")
+    //     }
+    //     $(".timecount").html(n)
+
+    // }
 
 
 
@@ -43,23 +75,42 @@ $(document).ready(function () {
 
             for (var j = 0; j < questionArr[i].choices.length; j++) {
 
-                $("#question").append('<input type="radio" class="radioButton" name="triviaQuestion' + i + '" value="' + questionArr[i].choices[j] + '">' + questionArr[i].choices[j] + '</button>');
-
+                $("#question").append('<input type="radio" class="radioButton" name="' + i + '" value="' + questionArr[i].choices[j] + '">' + questionArr[i].choices[j] + '</input>');
+``
             }
-        }
 
+            $("#submitBtn").show()
+        }
+        
         $('.radioButton').on('click', function (event) {
-            var userChoice= $(event.target).val()
-           console.log(userChoice)
+            var userChoice = $(event.target).val()
+            console.log(userChoice)
+            console.log(event.target)
+            console.log(event.currentTarget.name)
+            var questionNum = event.currentTarget.name
+
+            if (userChoice===questionArr[questionNum].correctAnswer){
+            console.log("You guessed right!")
+            correct++
+            
+            }
+            
+            else {
+            incorrect ++
+                console.log("You guessed wrong!")
+            }
 
         })
+
+        $("#submitBtn").on("click", function () {
+            console.log(correct)
+            console.log(incorrect)
+        })
+
     }
 
 })
 
-        // $('.radioButton').on("click", function (event) {
-        //         var userChoice = $('input:checked','radioButton').val();
-        //         console.log("You selected " + userChoice);
 
         //             if (userChoice === questionArr[i].correctAnswer[k]) {
         //                 correct++
