@@ -32,16 +32,19 @@ $(document).ready(function () {
     // var currentQuestion = 0;
     var correct = 0;
     var incorrect = 0;
-    var unanswered = 0;
+    var answered = correct+incorrect;
+    // var unanswered = questionArr.length-answered;
     // var counter = seconds;
     // var seconds = 30;
 
-    //Hide submit button
-    $("#submitBtn").hide()
+    //Hide unwanted elements
+    $("#submitBtn").hide();
+    $("#quizArea").hide();
+    $("#gameStats").hide();
 
 
     // Timer Countdown, begins at count
-    var n = 60
+    var n = 60;
 
 
 
@@ -61,92 +64,88 @@ $(document).ready(function () {
 
 
 
+
+    //Click start button to load the game
     $("#startBtn").on("click", function () {
-        loadQuestion()
-
+        loadQuestion();
     })
-
     function loadQuestion() {
+        
+        //Show/hide elements
+        $("#quizArea").show();
+        // $("#jumbo").hide();
+        $("#startBtn").hide();
 
-        $("#startBtn").hide()
-
+        //GEnerate quetsion list
         for (var i = 0; i < questionArr.length; i++) {
             $("#question").append("<h4>" + questionArr[i].question + "</h4>");
 
             for (var j = 0; j < questionArr[i].choices.length; j++) {
-
                 $("#question").append('<input type="radio" class="radioButton" name="' + i + '" value="' + questionArr[i].choices[j] + '">' + questionArr[i].choices[j] + '</input>');
-``
             }
-
-            $("#submitBtn").show()
+            //Display the Submit Button
+            $("#submitBtn").show();
         }
-        
-        $('.radioButton').on('click', function (event) {
-            var userChoice = $(event.target).val()
-            console.log(userChoice)
-            console.log(event.target)
-            console.log(event.currentTarget.name)
-            var questionNum = event.currentTarget.name
 
-            if (userChoice===questionArr[questionNum].correctAnswer){
-            console.log("You guessed right!")
-            correct++
-            
+        $('.radioButton').on('click', function (event) {
+            ;
+            //event.target references he DOM element that initiated the event.This line of code says get the value from html element that initiated the event, in this case the radio button that the player selected. 
+            var userChoice = $(event.target).val();
+            console.log(userChoice);
+            console.log(event.target);
+            console.log(event.currentTarget.name);
+            var questionNum = event.currentTarget.name;
+    
+
+            if (userChoice === questionArr[questionNum].correctAnswer) {
+                ;
+                console.log("You guessed right!");
+                correct++;
+                console.log(correct)
+
             }
-            
+
+            else if (userChoice != questionArr[questionNum].correctAnswer) {
+                ;
+                incorrect++;
+                console.log("You guessed wrong!");
+                console.log(incorrect)
+
+            }
+
             else {
-            incorrect ++
-                console.log("You guessed wrong!")
+                ;
+                unanswered++;
             }
 
         })
 
+        //Submit answers function
         $("#submitBtn").on("click", function () {
-            console.log(correct)
-            console.log(incorrect)
+            $("#gameStats").show();
+            $("#question").hide();
+            $("#submitBtn").hide();
+            $("#correctAnswers").html("Correct Answers: " + correct)
+            $("#incorrectAnswers").html("Incorrect Answers: " + incorrect)
+            // $("#unanswered").html("Unanswered: " + unanswered)
+
+            console.log(correct);
+            console.log(incorrect);
+            console.log(unanswered);
+        })
+
+
+        
+
+
+        $("#playAgainBtn").on("click", function () {
+            location.reload()
+    
         })
 
     }
 
+
 })
 
 
-        //             if (userChoice === questionArr[i].correctAnswer[k]) {
-        //                 correct++
-        //                 console.log(correct)
-        //             }
-
-        //             else if (userChoice != questionArr[i].correctAnswer[k]) {
-        //                 incorrect++
-        //                 console.log(incorrect)
-        //             }
-
-        //             else {
-        //                 unanswered++
-        //                 console.log(unanswered)
-        //             }
-
-        // })
-
-
-        // $('#question input').on('change', function () {
-            // alert($('input[name=triviaQuestion]:checked', '#question').val());
-            // alert($('input:checked', '#question').val());
-            // alert($('input:radio:checked').val());
-
-
-        // $("#questions").append(questionThing);   
-
-        // $(".radioButton").on("click", function () {
-        //     console.log("hello")
-
-
-    // $("#question").html("<h4>" + questionArr[currentQuestion].question + "</h4>");
-
-    // for (var i = 0; i < questionArr[currentQuestion].choices.length; i++) {
-    //     $("#question").append("<button class='choiceBtn' id='button' multChoice='" + questionArr[currentQuestion].choices[i]
-    //         + "'>" + questionArr[currentQuestion].choices[i] + "</button>");
-    // }
-
-    // }

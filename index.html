@@ -19,29 +19,39 @@
 
     <body>
 
-        <div class="jumbotron jumbotron-fluid">
+        <!-- Jumbotron -->
+        <div class="jumbotron jumbotron-fluid" id="jumbo">
             <div class="container">
                 <h1 class="display-4">Garden State Trivia</h1>
-                <p class="lead">Welcome to the Garden State Trivia game! Test your knowledge of the great Garden State by submiting all of your answers before the timer runs out.</p>
+                <p class="lead">Welcome to the Garden State Trivia game! Test your knowledge of the great Garden State by submiting all of
+                    your answers before the timer runs out.</p>
                 <p class="lead">Click the "Start Game" button when you're ready to begin playing.</p>
                 <p class="lead">Good luck!</p>
-                
-                <div class="btn btn-success" id="startBtn">Start</div>
+
+                <div class="btn btn-primary" id="startBtn">Start Game</div>
             </div>
 
         </div>
 
-        <!-- Jumbotron -->
+        
         <div class="container">
-            <div class="row" id="quizArea">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <div id="seconds"></div>
+            <div id="quizArea">
+                <!-- <div class="col-md-2"></div> -->
+                <div  id="questionBox">
+                    <div id="timeLeft"></div>
                     <form id="question"></form>
-                    <div class="btn btn-secondary" id="submitBtn">Submit Questions</div>
-                    <div id="gameStats"></div>
+                    <div class="btn btn-primary" id="submitBtn">Submit Questions</div>
+                    <div id="gameStats">
+                        <h4>Your Results</h4>
+                        <br>
+                        <div id="correctAnswers"></div>
+                        <div id="incorrectAnswers"></div>
+                        <div id="unanswered"></div>
+                        <br>
+                        <div class="btn btn-primary" id="playAgainBtn">Play Again</div>
+                    </div>
                 </div>
-                <div class="col-md-3"></div>
+                <!-- <div class="col-md-2"></div> -->
             </div>
         </div>
 
