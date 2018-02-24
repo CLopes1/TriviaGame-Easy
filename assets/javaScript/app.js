@@ -43,8 +43,8 @@ $(document).ready(function () {
             correctAnswer: "Cape May",
         },
         {
-            question: "Which the largest seaport in the U.S.?",
-            choices: ["Union", "Montclair", "Manhattan", "Elizabeth"],
+            question: "Which New Jersey city is home to the largest seaport in the U.S.?",
+            choices: ["Long Island", "Montclair", "Manhattan", "Elizabeth"],
             correctAnswer: "Elizabeth",
         },
         {
@@ -63,9 +63,9 @@ $(document).ready(function () {
             correctAnswer: "Honey Bee",
         },
         {
-            question: "What is the state insect of New Jersey?",
-            choices: ["Ladybug", "Praying Mantis", "Wolf Spider","Honey Bee"],
-            correctAnswer: "Honey Bee",
+            question: "How many miles of coastline does New Jersey have?",
+            choices: ["111", "27", "44","130"],
+            correctAnswer: "130",
         },
         {
             question: "Which one of these celebrities is a New Jersey native?",
@@ -198,15 +198,15 @@ $(document).ready(function () {
                 console.log("Incorrect answer count is currently equal to: " + incorrect)
                 console.log("Unanswered:" + unanswered);
             }
-
         })
 
-        //Submit answers function
+        //Submit answers function.
         $("#submitBtn").on("click", function () {
             stop();//stop game timer
             gameResults()
         })
 
+        //Reset game when clicking play again button.
         $("#playAgainBtn").on("click", function () {
             location.reload();
         })
