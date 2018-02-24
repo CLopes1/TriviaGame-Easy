@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     // //Timer function----------------------------------------------------------------------------------------------
     // Set interval for the timer
-    var seconds = 5;
+    var seconds = 60;
     var intervalId;
 
     function run() {
