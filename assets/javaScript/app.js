@@ -78,18 +78,20 @@ $(document).ready(function () {
     var correct = 0;
     var incorrect = 0;
     var answered = 0;
-    // var unanswered = questionArr.length-answered; - Cant get this to work. 
+    var unanswered = 0;
 
 
     //Shows Game Results-------------------------------------------------------------------------------------------
     function gameResults() {
+        answered = correct+incorrect;
+        unanswered = questionArr.length-answered;
         $("#timeBox").hide();
         $("#gameStats").show();
         $("#question").hide();
         $("#submitBtn").hide();
         $("#correctAnswers").html("Correct Answers: " + correct);
         $("#incorrectAnswers").html("Incorrect Answers: " + incorrect);
-        // $("#unanswered").html("Unanswered: "+ unanswered); - Cant get this to work. 
+        $("#unanswered").html("Unanswered: "+ unanswered);
         console.log("Correct Answers:" + correct);
         console.log("Incorrect Answers:" + incorrect);
 
@@ -187,11 +189,14 @@ $(document).ready(function () {
             if (userChoice === questionArr[questionNum].correctAnswer) {
                 console.log("You guessed right!");
                 correct++;
+                answered++;
                 console.log("Correct answer count is currently equal to: " + correct)
             }
 
             else if (userChoice != questionArr[questionNum].correctAnswer) {
                 incorrect++;
+                answered++;
+
                 console.log("You guessed wrong!");
                 console.log("Incorrect answer count is currently equal to: " + incorrect)
             }
