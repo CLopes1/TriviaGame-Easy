@@ -26,7 +26,53 @@ $(document).ready(function () {
             question: "On what island is Governor's mansion located?",
             choices: ["Long Beach Island", "Absecon Island", "Island Beach", "Brigantine Island"],
             correctAnswer: "Island Beach",
-        }
+        },
+        {
+            question: "New Jersey is the only state in the country to have all of its counties marked as metropolitan areas.",
+            choices: ["True", "False", "Knicks"],
+            correctAnswer: "True",
+        },
+        {
+            question: "New Jersey has the most '_____' per capita in THE WORLD.?",
+            choices: ["Trees", "People", "Diners","Gardens"],
+            correctAnswer: "Diners",
+        },
+        {
+            question: "Which town holds the distinction of being the oldest seashore resort in the United States and one of the most unique.?",
+            choices: ["Absecon", "Jersey City", "Cape May", "Belmar"],
+            correctAnswer: "Cape May",
+        },
+        {
+            question: "Which the largest seaport in the U.S.?",
+            choices: ["Union", "Montclair", "Manhattan", "Elizabeth"],
+            correctAnswer: "Elizabeth",
+        },
+        {
+            question: "Which city in NJ was the game Monopoly modeled after?",
+            choices: ["Atlantic City", "Monroe", "Hoboken", "Boulder"],
+            correctAnswer: "Atlantic City",
+        },
+        {
+            question: "True or false: Atlantic city has the longest boardwalk in the world.",
+            choices: ["True", "False"],
+            correctAnswer: "True",
+        },
+        {
+            question: "What is the state insect of New Jersey?",
+            choices: ["Ladybug", "Praying Mantis", "Wolf Spider","Honey Bee"],
+            correctAnswer: "Honey Bee",
+        },
+        {
+            question: "What is the state insect of New Jersey?",
+            choices: ["Ladybug", "Praying Mantis", "Wolf Spider","Honey Bee"],
+            correctAnswer: "Honey Bee",
+        },
+        {
+            question: "Which one of these celebrities is a New Jersey native?",
+            choices: ["Jack Nicholson","Bruce Springsteen","Bon Jovi","Whitney Houston","All the above"],
+            correctAnswer: "All the above",
+        },
+
     ]
 
     var correct = 0;
@@ -38,9 +84,7 @@ $(document).ready(function () {
 
     //Functions
 
-    //Show/hide unwanted elements
-    $("#quizArea").show();
-    $("#startBtn").hide();
+
 
     //Shows Game Results-------------------------------------------------------------------------------------------
     function gameResults() {
@@ -57,7 +101,7 @@ $(document).ready(function () {
 
     // //Timer function----------------------------------------------------------------------------------------------
     // Set interval for the timer
-    var seconds = 10;
+    var seconds = 5;
     var intervalId;
 
     function run() {
@@ -81,7 +125,7 @@ $(document).ready(function () {
             //  ...run the stop function.
             stop();
 
-            //  Alert the user that time is up and display game results. 
+            //  Alert the user that time is up and show game results. 
             alert("Time Up!");
             gameResults()
         }
@@ -97,13 +141,15 @@ $(document).ready(function () {
     $("#quizArea").hide();
     $("#gameStats").hide();
 
-
     // START GAME----------------------------------------------------------------------------------------------------------------
 
     //Click start button to load the game
     $("#startBtn").on("click", function () {
         loadQuestion();
-        run(); //
+        run();
+        //Show/hide unwanted elements
+        $("#quizArea").show();
+        $("#startBtn").hide();
     })
 
     //Load the questions and answers----------------------------------------------------------------------------------------------
@@ -120,6 +166,15 @@ $(document).ready(function () {
             //Show the submit your questions button
             $("#submitBtn").show();
         }
+
+        //This function limits a single click per question name. 
+        $(":radio").click(function () {
+            var radioName = $(this).attr("name"); //Get radio name
+            console.log(radioName) //radio0
+
+            $(":radio[name='" + radioName + "']").attr("disabled", true); //Disable all with the same name
+
+        })
 
         //Log the user's selection and compare it to the respective answer----------------------------------------------------------
         $('.radioButton').on('click', function (event) {
@@ -144,18 +199,11 @@ $(document).ready(function () {
                 console.log("Unanswered:" + unanswered);
             }
 
-            //This function limits a single click per question name. 
-            $(":radio").click(function () {
-                var radioName = $(this).attr("name"); //Get radio name
-                console.log(radioName) //radio0
-
-                $(":radio[name='" + radioName + "']").attr("disabled", true); //Disable all with the same name
-
-            })
         })
 
         //Submit answers function
         $("#submitBtn").on("click", function () {
+            stop();//stop game timer
             gameResults()
         })
 
