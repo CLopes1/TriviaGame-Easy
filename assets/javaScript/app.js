@@ -29,13 +29,68 @@ $(document).ready(function () {
         }
     ]
 
-    // var currentQuestion = 0;
     var correct = 0;
     var incorrect = 0;
-    var answered = correct+incorrect;
-    // var unanswered = questionArr.length-answered;
-    // var counter = seconds;
-    // var seconds = 30;
+    var answered = correct + incorrect;
+    var numOfQuest = questionArr.length;
+    var unanswered = numOfQuest - answered;
+
+
+    //Triggers game results
+    function gameResults() {
+        $("#gameStats").show();
+        $("#question").hide();
+        $("#submitBtn").hide();
+        $("#correctAnswers").html("Correct Answers: " + correct);
+        $("#incorrectAnswers").html("Incorrect Answers: " + incorrect);
+        // $("#unanswered").html("Unanswered: " + unanswered);
+        console.log("Correct Answers:" + correct);
+        console.log("Incorrect Answers:" + incorrect);
+        // console.log("Unanswered:" + unanswered)
+    }
+
+    // //Timer function
+
+    // set interval
+    var seconds = 10;
+    var intervalId;
+
+    function run() {
+        clearInterval(intervalId);
+        intervalId = setInterval(decrement, 1000);
+      }
+
+       //  The decrement function.
+    function decrement() {
+
+        //  Decrease number by one.
+        seconds--;
+  
+        //  Show the number in the #show-number tag.
+        $("#timeCount").html(seconds);
+        console.log(seconds)
+  
+  
+        //  Once number hits zero...
+        if (seconds === 0) {
+  
+          //  ...run the stop function.
+          stop();
+  
+          //  Alert the user that time is up.
+          alert("Time Up!");
+          gameResults()
+
+        }
+      }
+
+      function stop() {
+
+        //  Clears our intervalId
+        //  We just pass the name of the interval
+        //  to the clearInterval function.
+        clearInterval(intervalId);
+      }
 
     //Hide unwanted elements
     $("#submitBtn").hide();
@@ -43,34 +98,18 @@ $(document).ready(function () {
     $("#gameStats").hide();
 
 
-    // Timer Countdown, begins at count
-    var n = 60;
-
-
-
-    // function countDown() {
-    //     n--;
-    //     if (n > 0) {
-    //         setTimeout(countDown, 1000);
-    //     }
-    //     else if (n <= 0) {
-    //         // alert shows how many correct, and how many incorrect
-    //         alert('Times Up!\n Correct Guesses: ' + correct + '\n Incorrect: ' + incorrect + "")
-    //     }
-    //     $(".timecount").html(n)
-
-    // }
-
-
-
-
-
     //Click start button to load the game
     $("#startBtn").on("click", function () {
         loadQuestion();
+       run();
+
+        // var timeLeft = 5 * 1,
+        //     display = document.querySelector('#timeCount');
+        // startTimer(timeLeft, display);
     })
+
     function loadQuestion() {
-        
+
         //Show/hide elements
         $("#quizArea").show();
         // $("#jumbo").hide();
@@ -88,63 +127,49 @@ $(document).ready(function () {
         }
 
         $('.radioButton').on('click', function (event) {
-            ;
-            //event.target references he DOM element that initiated the event.This line of code says get the value from html element that initiated the event, in this case the radio button that the player selected. 
+            //event.target references the DOM element that initiated the event.This line of code says get the value from html element that initiated the event, in this case the radio button that the player selected. 
             var userChoice = $(event.target).val();
-            console.log(userChoice);
-            console.log(event.target);
-            console.log(event.currentTarget.name);
+            // console.log(userChoice);
+            // console.log(event.target);
+            // console.log(event.currentTarget.name);
             var questionNum = event.currentTarget.name;
-    
 
             if (userChoice === questionArr[questionNum].correctAnswer) {
-                ;
                 console.log("You guessed right!");
                 correct++;
-                console.log(correct)
-
+                console.log("Correct answer count is currently equal to: " + correct)
+                console.log("Unanswered:" + unanswered);
             }
 
             else if (userChoice != questionArr[questionNum].correctAnswer) {
-                ;
                 incorrect++;
                 console.log("You guessed wrong!");
-                console.log(incorrect)
-
+                console.log("Incorrect answer count is currently equal to: " + incorrect)
+                console.log("Unanswered:" + unanswered);
             }
 
-            else {
-                ;
-                unanswered++;
-            }
+            //This function limits a single click per question name. 
+            $(":radio").click(function () {
+                var radioName = $(this).attr("name"); //Get radio name
+                console.log(radioName) //radio0
 
+                $(":radio[name='" + radioName + "']").attr("disabled", true); //Disable all with the same name
+
+            })
         })
+
+
 
         //Submit answers function
         $("#submitBtn").on("click", function () {
-            $("#gameStats").show();
-            $("#question").hide();
-            $("#submitBtn").hide();
-            $("#correctAnswers").html("Correct Answers: " + correct)
-            $("#incorrectAnswers").html("Incorrect Answers: " + incorrect)
-            // $("#unanswered").html("Unanswered: " + unanswered)
-
-            console.log(correct);
-            console.log(incorrect);
-            console.log(unanswered);
+            gameResults()
         })
 
-
-        
-
-
         $("#playAgainBtn").on("click", function () {
-            location.reload()
-    
+            location.reload();
         })
 
     }
-
 
 })
 
