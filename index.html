@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="./assets/css/style.css">
 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 </head>
 
 
@@ -20,42 +22,45 @@
     <body>
 
         <!-- Jumbotron -->
-        <div class="jumbotron jumbotron-fluid" id="jumbo">
-            <div class="container">
-                <h1 class="display-4">Garden State Trivia</h1>
-                <p class="lead">Welcome to the Garden State Trivia game! Test your knowledge of the great Garden State by submiting all of
-                    your answers before the timer runs out.</p>
-                <p class="lead">Click the "Start Game" button when you're ready to begin playing.</p>
-                <p class="lead">You have one minute to answer all of the questions.</p>
-                <p class="lead">Good luck!</p>
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark text-center" id="jumbo">
+            <div class="container col-md-8 px-0">
+                <h1 class="display-4 font-weight-bold">Garden State Trivia</h1>
+                <p class="lead">Welcome to the Garden State Trivia, the premier New Jersey trivia game on the web! Test your knowledge of
+                    the great Garden State by answering as many questions before the timer runs out.</p>
+                <p class="bd-lead">Click the "Start Game" button when you're ready to begin playing.</p>
+                <p class="bd-lead">You have one minute to answer all of the questions.</p>
+                <p class="bd-lead">Good luck!</p>
 
-                <div class="btn btn-primary" id="startBtn">Start Game</div>
+                <div class="btn btn-success" id="startBtn">Start Game</div>
             </div>
 
         </div>
 
 
         <div class="container">
-            <div id="quizArea">
-                <!-- <div class="col-md-2"></div> -->
-                <div id="questionBox">
-                    <div class="timer">Time Remaining:
-                        <span id="timeCount"></span>
-                    </div>
-                    <br>
+            <div class="row text-center" id="quizArea">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" id="questionBox">
+
                     <form id="question"></form>
-                    <div class="btn btn-primary" id="submitBtn">Submit Answers</div>
+                    <div class="btn btn-success" id="submitBtn">Submit Answers</div>
                     <div id="gameStats">
-                        <h4>Your Results</h4>
-                        <br>
-                        <div id="correctAnswers"></div>
-                        <div id="incorrectAnswers"></div>
-                        <div id="unanswered"></div>
-                        <br>
-                        <div class="btn btn-primary" id="playAgainBtn">Play Again</div>
+                        <h1 class="h1 font-weight-bold" id="results">Your Results</h1>
+                        <div class="h5 font-weight-bold" id="correctAnswers"></div>
+                        <div class="h5 font-weight-bold"id="incorrectAnswers"></div>
+                        <div class="h5 font-weight-bold"id="unanswered"></div>
+                        <div class="btn btn-success" id="playAgainBtn">Play Again</div>
                     </div>
                 </div>
-                <!-- <div class="col-md-2"></div> -->
+
+                <div class="col-md-2 text-center" id="right-side">
+                    <div id="timeBox">
+                    <i class="fas fa-stopwatch fa-5x"></i>
+                    <div class="timer" >Timer:
+                        <span id="timeCount"></span>
+
+                    </div>
+                </div>
             </div>
         </div>
 

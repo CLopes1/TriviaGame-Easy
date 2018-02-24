@@ -1,10 +1,38 @@
 * {
     box-sizing: border-box;
 }
-
-
-.radioButton {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.display-4 {
+ color:green;
 }
 
+#startBtn {
+    margin-bottom:-10px;
+}
+
+#timeBox {
+    position: fixed;
+}
+
+#submitBtn {
+    margin-bottom:20px;
+}
+
+
+input[type="radio"]{
+    margin: 20px 10px 20px 10px;
+  }
+
+  #results {
+
+    margin-top:20px;    
+  }
+
+  #playAgainBtn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #correctAnswers {
+      /* margin-top:10px; */
+      margin-bottom:10px;
+  }

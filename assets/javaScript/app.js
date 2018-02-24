@@ -28,13 +28,13 @@ $(document).ready(function () {
             correctAnswer: "Island Beach",
         },
         {
-            question: "New Jersey is the only state in the country to have all of its counties marked as metropolitan areas.",
-            choices: ["True", "False", "Knicks"],
+            question: "True or false: New Jersey is the only state in the country to have all of its counties marked as metropolitan areas.",
+            choices: ["True", "False"],
             correctAnswer: "True",
         },
         {
             question: "New Jersey has the most '_____' per capita in THE WORLD.?",
-            choices: ["Trees", "People", "Diners","Gardens"],
+            choices: ["Trees", "People", "Diners", "Gardens"],
             correctAnswer: "Diners",
         },
         {
@@ -59,17 +59,17 @@ $(document).ready(function () {
         },
         {
             question: "What is the state insect of New Jersey?",
-            choices: ["Ladybug", "Praying Mantis", "Wolf Spider","Honey Bee"],
+            choices: ["Ladybug", "Praying Mantis", "Wolf Spider", "Honey Bee"],
             correctAnswer: "Honey Bee",
         },
         {
             question: "How many miles of coastline does New Jersey have?",
-            choices: ["111", "27", "44","130"],
+            choices: ["111", "27", "44", "130"],
             correctAnswer: "130",
         },
         {
             question: "Which one of these celebrities is a New Jersey native?",
-            choices: ["Jack Nicholson","Bruce Springsteen","Bon Jovi","Whitney Houston","All the above"],
+            choices: ["Jack Nicholson", "Bruce Springsteen", "Bon Jovi", "Whitney Houston", "All the above"],
             correctAnswer: "All the above",
         },
 
@@ -77,26 +77,22 @@ $(document).ready(function () {
 
     var correct = 0;
     var incorrect = 0;
-    var answered = correct + incorrect;
-    var numOfQuest = questionArr.length;
-    var unanswered = numOfQuest - answered;
-
-
-    //Functions
-
+    var answered = 0;
+    // var unanswered = questionArr.length-answered; - Cant get this to work. 
 
 
     //Shows Game Results-------------------------------------------------------------------------------------------
     function gameResults() {
+        $("#timeBox").hide();
         $("#gameStats").show();
         $("#question").hide();
         $("#submitBtn").hide();
         $("#correctAnswers").html("Correct Answers: " + correct);
         $("#incorrectAnswers").html("Incorrect Answers: " + incorrect);
-        // $("#unanswered").html("Unanswered: " + unanswered);
+        // $("#unanswered").html("Unanswered: "+ unanswered); - Cant get this to work. 
         console.log("Correct Answers:" + correct);
         console.log("Incorrect Answers:" + incorrect);
-        // console.log("Unanswered:" + unanswered)
+
     }
 
     // //Timer function----------------------------------------------------------------------------------------------
@@ -116,7 +112,7 @@ $(document).ready(function () {
 
         //  Show the number in the #timeCount tag.
         $("#timeCount").html(seconds);
-        console.log(seconds)
+        // console.log(seconds)
 
 
         //  Once number hits zero...
@@ -178,6 +174,9 @@ $(document).ready(function () {
 
         //Log the user's selection and compare it to the respective answer----------------------------------------------------------
         $('.radioButton').on('click', function (event) {
+            answered++;
+            console.log("answered =" + answered)
+            console.log("unanswered =" + unanswered)
             //event.target references the DOM element that initiated the event.This line of code says get the value from html element that initiated the event, in this case the radio button that the player selected. 
             var userChoice = $(event.target).val();
             // console.log(userChoice);
@@ -189,14 +188,12 @@ $(document).ready(function () {
                 console.log("You guessed right!");
                 correct++;
                 console.log("Correct answer count is currently equal to: " + correct)
-                console.log("Unanswered:" + unanswered);
             }
 
             else if (userChoice != questionArr[questionNum].correctAnswer) {
                 incorrect++;
                 console.log("You guessed wrong!");
                 console.log("Incorrect answer count is currently equal to: " + incorrect)
-                console.log("Unanswered:" + unanswered);
             }
         })
 
