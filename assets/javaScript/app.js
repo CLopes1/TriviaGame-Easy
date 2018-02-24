@@ -36,7 +36,13 @@ $(document).ready(function () {
     var unanswered = numOfQuest - answered;
 
 
-    //Triggers game results
+    //Functions
+
+    //Show/hide unwanted elements
+    $("#quizArea").show();
+    $("#startBtn").hide();
+
+    //Shows Game Results-------------------------------------------------------------------------------------------
     function gameResults() {
         $("#gameStats").show();
         $("#question").hide();
@@ -49,90 +55,80 @@ $(document).ready(function () {
         // console.log("Unanswered:" + unanswered)
     }
 
-    // //Timer function
-
-    // set interval
+    // //Timer function----------------------------------------------------------------------------------------------
+    // Set interval for the timer
     var seconds = 10;
     var intervalId;
 
     function run() {
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
-      }
+    }
 
-       //  The decrement function.
-    function decrement() {
+    function decrement() { //  The decrement function.
 
-        //  Decrease number by one.
-        seconds--;
-  
-        //  Show the number in the #show-number tag.
+
+        seconds--; //  Decrease number by one.
+
+        //  Show the number in the #timeCount tag.
         $("#timeCount").html(seconds);
         console.log(seconds)
-  
-  
+
+
         //  Once number hits zero...
         if (seconds === 0) {
-  
-          //  ...run the stop function.
-          stop();
-  
-          //  Alert the user that time is up.
-          alert("Time Up!");
-          gameResults()
 
+            //  ...run the stop function.
+            stop();
+
+            //  Alert the user that time is up and display game results. 
+            alert("Time Up!");
+            gameResults()
         }
-      }
+    }
 
-      function stop() {
-
-        //  Clears our intervalId
-        //  We just pass the name of the interval
-        //  to the clearInterval function.
+    //  Stops the timer by clearing the intervalId. This passes the name of the interval "intervalId" to the clearInterval function."
+    function stop() {
         clearInterval(intervalId);
-      }
-
+    }
+    // --------------------------------------------------------------------------------------------------------------------------
     //Hide unwanted elements
     $("#submitBtn").hide();
     $("#quizArea").hide();
     $("#gameStats").hide();
 
 
+    // START GAME----------------------------------------------------------------------------------------------------------------
+
     //Click start button to load the game
     $("#startBtn").on("click", function () {
         loadQuestion();
-       run();
-
-        // var timeLeft = 5 * 1,
-        //     display = document.querySelector('#timeCount');
-        // startTimer(timeLeft, display);
+        run(); //
     })
 
+    //Load the questions and answers----------------------------------------------------------------------------------------------
     function loadQuestion() {
 
-        //Show/hide elements
-        $("#quizArea").show();
-        // $("#jumbo").hide();
-        $("#startBtn").hide();
-
-        //GEnerate quetsion list
+        //Loop through questionArr and append each question to the HTML
         for (var i = 0; i < questionArr.length; i++) {
             $("#question").append("<h4>" + questionArr[i].question + "</h4>");
 
+            //Loop through each choices 
             for (var j = 0; j < questionArr[i].choices.length; j++) {
                 $("#question").append('<input type="radio" class="radioButton" name="' + i + '" value="' + questionArr[i].choices[j] + '">' + questionArr[i].choices[j] + '</input>');
             }
-            //Display the Submit Button
+            //Show the submit your questions button
             $("#submitBtn").show();
         }
 
+        //Log the user's selection and compare it to the respective answer----------------------------------------------------------
         $('.radioButton').on('click', function (event) {
             //event.target references the DOM element that initiated the event.This line of code says get the value from html element that initiated the event, in this case the radio button that the player selected. 
             var userChoice = $(event.target).val();
             // console.log(userChoice);
             // console.log(event.target);
             // console.log(event.currentTarget.name);
-            var questionNum = event.currentTarget.name;
+            var questionNum = event.currentTarget.name; //event.currentTarget.name is the datapath located within the input node.
 
             if (userChoice === questionArr[questionNum].correctAnswer) {
                 console.log("You guessed right!");
@@ -157,8 +153,6 @@ $(document).ready(function () {
 
             })
         })
-
-
 
         //Submit answers function
         $("#submitBtn").on("click", function () {
